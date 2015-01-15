@@ -112,7 +112,7 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 			$this->get_widget_slug(),
 			__('Enquiry Box', $this->get_widget_text_domain()),
 			array(
-				'description' => __('Enquiry box with DatePicker.', $this->get_widget_text_domain()),
+				'description' => __('Enquiry box with Datepicker.', $this->get_widget_text_domain()),
 				'classname' => $this->get_widget_text_domain(),
 			)
 		);
@@ -123,6 +123,9 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 		// Register admin styles and scripts
 		add_action('admin_enqueue_scripts', array($this, 'register_admin_styles'));
 		add_action('admin_enqueue_scripts', array($this, 'register_admin_scripts'));
+
+		// Register styles and scrips
+		add_action('wp_enqueue_scripts', array($this, 'register_scripts'));
 	}
 	
 	/**
@@ -354,7 +357,7 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 	 *
      * @since  1.0.0
      *
-     * @return array - with custom_template[name,label]
+     * @return array - with template object[name,label]
 	 */
 	public function get_custom_template_list()
 	{
@@ -409,6 +412,25 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 		if ('widgets.php' == $hook) 
 		{
 		}
+	}
+
+	/**
+	 * Registers and enqueues JavaScript.
+	 *
+     * @since  1.0.0
+     *
+     * @return void
+ 	 */
+	public function register_scripts() 
+	{
+		$source = 'js/enquiry-box-pickadate.js';
+		wp_enqueue_script(
+			$this->get_widget_slug(),
+			plugins_url($source, __FILE__),
+			array('jquery'),
+			$this->get_plugin_version(),
+			true
+		);
 	}
 
 	/**
