@@ -181,7 +181,8 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 		$instance['arrival_label'] = apply_filters($this->get_widget_slug() . '_arrival_label', $instance['arrival_label'], $args, $instance);
 		$instance['departure_label'] = apply_filters($this->get_widget_slug() . '_departure_label', $instance['departure_label'], $args, $instance);
 		$instance['adults_label'] = apply_filters($this->get_widget_slug() . '_adults_label', $instance['adults_label'], $args, $instance);
-		$instance['submit_label'] = apply_filters($this->get_widget_slug() . 'submit_label', $instance['submit_label'], $args, $instance);
+		$instance['submit_label'] = apply_filters($this->get_widget_slug() . '_submit_label', $instance['submit_label'], $args, $instance);
+		$instance['target'] = apply_filters($this->get_widget_slug() . '_target', $instance['target'], $args, $instance);
 		include ($this->get_template('widget', $instance['template']));
     }
 
@@ -203,6 +204,7 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 		$instance['departure_label'] = strip_tags($new_instance['departure_label']);
 		$instance['adults_label'] = strip_tags($new_instance['adults_label']);
 		$instance['submit_label'] = strip_tags($new_instance['submit_label']);
+		$instance['target'] = strip_tags($new_instance['target']);
         return $instance;
     }
 
@@ -269,6 +271,7 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 			'departure_Label' => 'Departure',
 			'adults_Label' => 'Adults',
 			'submit_label' => 'Go',
+			'target' => '',
 			'template' => 'default'
 		);
 		return $defaults;
@@ -312,8 +315,24 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
      * @param  array $instance 
 	 * @return void
 	 */
-	public function the_target_link(&$instance)
+	public function the_target(&$instance)
 	{
+		$target = $instance['target'];
+		$protocol_index = strpos($target, 'http://');
+		if ($protocol_index === false)
+		{
+			$protocol_index = strpos($target, 'https://');
+		}
+		if ($protocol_index === false)
+		{
+			$target_slug = ltrim($target, '/');
+			$target = '/' . $target_slug;
+			$protocol_index = 0;
+		}
+		if ($protocol_index === 0)
+		{
+			echo $target;
+		}
 	}
 
 	/**

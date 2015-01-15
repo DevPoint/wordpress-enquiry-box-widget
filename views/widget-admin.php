@@ -28,6 +28,10 @@ if ( !defined( 'ABSPATH' ) )
 	<label for="<?php echo $this->get_field_id('submit_label');?>"><?php _e('Submit label:', $this->get_widget_text_domain()); ?></label> 
 	<input class="widefat" id="<?php echo $this->get_field_id('submit_label'); ?>" name="<?php echo $this->get_field_name('submit_label');?>" type="text" value="<?php echo $instance['submit_label'];?>" />
 </p>
+<p>
+	<label for="<?php echo $this->get_field_id('target');?>"><?php _e('Permalink:', $this->get_widget_text_domain()); ?></label> 
+	<input class="widefat" id="<?php echo $this->get_field_id('target'); ?>" name="<?php echo $this->get_field_name('target');?>" type="text" value="<?php echo $instance['target'];?>" />
+</p>
 <?php $custom_template_list = $this->get_custom_template_list(); ?>
 <?php if (!empty($custom_template_list)) : ?>
 <p>
