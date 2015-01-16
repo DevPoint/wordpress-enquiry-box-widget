@@ -79,7 +79,7 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
      *
      * @var      string
      */
-    protected $widget_slug = 'dpt-enquiry-box-widget';
+    protected $widget_slug = 'dpt_enquiry-box-widget';
     
     /**
      * Unique identifier for your widget.
@@ -217,7 +217,8 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 	 *
 	 * @see WP_Widget::form()
 	 *
-	 * @param array $instance - Previously saved values from database.
+	 * @param  array $instance - Previously saved values from database.
+	 * @return void
 	 */
 	public function form($instance) 
 	{
@@ -446,13 +447,17 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 	public function register_scripts() 
 	{
 		$source = 'js/enquiry-box-pickadate.js';
-		wp_enqueue_script(
-			$this->get_widget_slug(),
-			plugins_url($source, __FILE__),
-			array('jquery'),
-			$this->get_plugin_version(),
-			true
-		);
+		$source = apply_filters($this->get_widget_slug() . '_picker_script', $source);
+		if (!empty($source))
+		{
+			wp_enqueue_script(
+				$this->get_widget_slug(),
+				plugins_url($source, __FILE__),
+				array('jquery'),
+				$this->get_plugin_version(),
+				true
+			);
+		}
 	}
 
 	/**
