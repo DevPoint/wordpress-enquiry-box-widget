@@ -17,19 +17,19 @@ if (!defined('ABSPATH')) die('-1');
 
 <form action="<?php $this->the_target($instance);?>" method="GET">
 	<div class="widget-control arrival">
-		<input type="text" name="arrival" placeholder="<?php echo $instance['arrival_label'];?>" value="">
+		<input type="text" name="arrival" placeholder="<?php _e('Arrival', $this->get_widget_text_domain());?>" value="" data-format="<?php $this->the_format($instance);?>" data-submit-format="<?php $this->the_submit_format($instance);?>">
 	</div>
 	<div class="widget-control departure">
-		<input type="text" name="departure" placeholder="<?php echo $instance['departure_label'];?>" value="">
+		<input type="text" name="departure" placeholder="<?php _e('Departure', $this->get_widget_text_domain());?>" value="" data-format="<?php $this->the_format($instance);?>" data-submit-format="<?php $this->the_submit_format($instance);?>">
 	</div>
 	<div class="widget-control adults">
 		<select name="adults">
-			<option value="1">1 Erwachsener</option>
-			<option value="2" selected="selected">2 Erwachsene</option>
-			<option value="3">3 Erwachsene</option>
-			<option value="4">4 Erwachsene</option>
-			<option value="5">5 Erwachsene</option>
-			<option value="6">6 Erwachsene</option>
+			<option value="1"><?php _e('1 Adult', $this->get_widget_text_domain());?></option>
+			<option value="2" selected="selected"><?php _e('2 Adults', $this->get_widget_text_domain());?></option>
+			<option value="3"><?php _e('3 Adults', $this->get_widget_text_domain());?></option>
+			<option value="4"><?php _e('4 Adults', $this->get_widget_text_domain());?></option>
+			<option value="5"><?php _e('5 Adults', $this->get_widget_text_domain());?></option>
+			<option value="6"><?php _e('6 Adults', $this->get_widget_text_domain());?></option>
 		</select>
 	</div>
 	<div class="widget-submit">

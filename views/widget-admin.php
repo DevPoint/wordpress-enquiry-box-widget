@@ -13,23 +13,19 @@ if ( !defined( 'ABSPATH' ) )
 	<input class="widefat" id="<?php echo $this->get_field_id('title');?>" name="<?php echo $this->get_field_name('title');?>" type="text" value="<?php echo $instance['title'];?>" />
 </p>
 <p>
-	<label for="<?php echo $this->get_field_id('arrival_label');?>"><?php _e('Arrival label:', $this->get_widget_text_domain()); ?></label> 
-	<input class="widefat" id="<?php echo $this->get_field_id('arrival_label'); ?>" name="<?php echo $this->get_field_name('arrival_label');?>" type="text" value="<?php echo $instance['arrival_label'];?>" />
-</p>
-<p>
-	<label for="<?php echo $this->get_field_id('departure_label');?>"><?php _e('Departure label:', $this->get_widget_text_domain()); ?></label> 
-	<input class="widefat" id="<?php echo $this->get_field_id('departure_label'); ?>" name="<?php echo $this->get_field_name('departure_label');?>" type="text" value="<?php echo $instance['departure_label'];?>" />
-</p>
-<p>
-	<label for="<?php echo $this->get_field_id('adults_label');?>"><?php _e('Adults label:', $this->get_widget_text_domain()); ?></label> 
-	<input class="widefat" id="<?php echo $this->get_field_id('adults_label'); ?>" name="<?php echo $this->get_field_name('adults_label');?>" type="text" value="<?php echo $instance['adults_label'];?>" />
-</p>
-<p>
-	<label for="<?php echo $this->get_field_id('submit_label');?>"><?php _e('Submit label:', $this->get_widget_text_domain()); ?></label> 
+	<label for="<?php echo $this->get_field_id('submit_label');?>"><?php _e('Label \'Submit\':', $this->get_widget_text_domain()); ?></label> 
 	<input class="widefat" id="<?php echo $this->get_field_id('submit_label'); ?>" name="<?php echo $this->get_field_name('submit_label');?>" type="text" value="<?php echo $instance['submit_label'];?>" />
 </p>
 <p>
-	<label for="<?php echo $this->get_field_id('target');?>"><?php _e('Permalink:', $this->get_widget_text_domain()); ?></label> 
+	<label for="<?php echo $this->get_field_id('format');?>"><?php _e('Date format:', $this->get_widget_text_domain()); ?></label> 
+	<input class="widefat" id="<?php echo $this->get_field_id('format'); ?>" name="<?php echo $this->get_field_name('format');?>" type="text" value="<?php echo $instance['format'];?>" />
+</p>
+<p>
+	<label for="<?php echo $this->get_field_id('submit_format');?>"><?php _e('Internal date format:', $this->get_widget_text_domain()); ?></label> 
+	<input class="widefat" id="<?php echo $this->get_field_id('submit_format'); ?>" name="<?php echo $this->get_field_name('submit_format');?>" type="text" value="<?php echo $instance['submit_format'];?>" />
+</p>
+<p>
+	<label for="<?php echo $this->get_field_id('target');?>"><?php _e('Target link:', $this->get_widget_text_domain()); ?></label> 
 	<input class="widefat" id="<?php echo $this->get_field_id('target'); ?>" name="<?php echo $this->get_field_name('target');?>" type="text" value="<?php echo $instance['target'];?>" />
 </p>
 <?php $custom_template_list = $this->get_custom_template_list(); ?>

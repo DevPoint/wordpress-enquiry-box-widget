@@ -104,8 +104,11 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 	 */
 	public function __construct() 
 	{
-		// load plugin text domain
-		add_action('init', array($this, 'widget_textdomain'));
+		// load translation
+		load_plugin_textdomain(
+			$this->get_widget_text_domain(), 
+			false,
+			basename(dirname(__FILE__)) . '/languages/');
 
 		// The widget constructor
 		parent::__construct(
@@ -181,9 +184,8 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 	public function widget($args, $instance) 
 	{
 		$instance['title'] = apply_filters('widget_title', empty($instance['title']) ? '' : $instance['title']);
-		$instance['arrival_label'] = apply_filters($this->get_widget_slug() . '_arrival_label', $instance['arrival_label'], $args, $instance);
-		$instance['departure_label'] = apply_filters($this->get_widget_slug() . '_departure_label', $instance['departure_label'], $args, $instance);
-		$instance['adults_label'] = apply_filters($this->get_widget_slug() . '_adults_label', $instance['adults_label'], $args, $instance);
+		$instance['format'] = apply_filters($this->get_widget_slug() . '_format', $instance['format'], $args, $instance);
+		$instance['submit_format'] = apply_filters($this->get_widget_slug() . '_submit_format', $instance['submit_format'], $args, $instance);
 		$instance['submit_label'] = apply_filters($this->get_widget_slug() . '_submit_label', $instance['submit_label'], $args, $instance);
 		$instance['target'] = apply_filters($this->get_widget_slug() . '_target', $instance['target'], $args, $instance);
 		include ($this->get_template('widget', $instance['template']));
@@ -203,9 +205,8 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 		$instance = $old_instance;
 		$new_instance = wp_parse_args((array)$new_instance, self::get_defaults());
 		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['arrival_label'] = strip_tags($new_instance['arrival_label']);
-		$instance['departure_label'] = strip_tags($new_instance['departure_label']);
-		$instance['adults_label'] = strip_tags($new_instance['adults_label']);
+		$instance['format'] = strip_tags($new_instance['format']);
+		$instance['submit_format'] = strip_tags($new_instance['submit_format']);
 		$instance['submit_label'] = strip_tags($new_instance['submit_label']);
 		$instance['target'] = strip_tags($new_instance['target']);
         return $instance;
@@ -270,10 +271,9 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 	{
 		$defaults = array(
 			'title' => '',
-			'arrival_label' => 'Arrival',
-			'departure_Label' => 'Departure',
-			'adults_Label' => 'Adults',
-			'submit_label' => 'Go',
+			'format' => '',
+			'submit_format' => '',
+			'submit_label' => '',
 			'target' => '',
 			'template' => 'default'
 		);
@@ -339,6 +339,32 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 	}
 
 	/**
+	 * Print widget date format
+	 *
+     * @since  1.0.0
+     *
+     * @param  array $instance 
+	 * @return void
+	 */
+	public function the_format(&$instance)
+	{
+		echo $instance['format'];
+	}
+
+	/**
+	 * Print widget submit date format
+	 *
+     * @since  1.0.0
+     *
+     * @param  array $instance 
+	 * @return void
+	 */
+	public function the_submit_format(&$instance)
+	{
+		echo $instance['submit_format'];
+	}
+
+	/**
 	 * Compare with widget thumbnail template
 	 *
      * @since  1.0.0
@@ -371,18 +397,14 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
 	/*--------------------------------------------------*/
 
 	/**
-	 * Loads the Widget's text domain for localization and translation.
+	 * Initialize the Widget
 	 *
      * @since  1.0.0
      *
      * @return void
  	 */
- 	public function widget_textdomain() 
+ 	public function init() 
 	{
-		load_plugin_textdomain(
-			$this->get_widget_text_domain(), 
-			false, 
-			dirname(plugin_basename( __FILE__ )) . '/languages/');
 	}
 
 	/**
