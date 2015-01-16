@@ -8,9 +8,15 @@ jQuery(function($) {
             $departure = $widget.find('input[name=departure]');
 
         $arrival.pickadate({
+	        format: $arrival.data('format'),
+	        formatSubmit: $arrival.data('submit-format'),
+	        hiddenName: true,
         });
 
         $departure.pickadate({
+	        format: $departure.data('format'),
+	        formatSubmit: $departure.data('submit-format'),
+	        hiddenName: true,
         });
     });
 
