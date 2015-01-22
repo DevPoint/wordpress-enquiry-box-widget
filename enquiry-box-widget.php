@@ -14,7 +14,7 @@
  * Plugin Name:       Enquiry Box Widget
  * Plugin URI:        http://wordpress.org/extend/plugins/post-teaser-widget
  * Description:       An advanced posts display widget with many options: get posts by post type and taxonomy & term or by post ID; sorting & ordering; feature images; custom templates and more.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            willriderat
  * Author URI:        http://devpoint.at
  * Text Domain:       enquiry-box-widget
@@ -68,7 +68,7 @@ class DPT_Enquiry_Box_Widget extends WP_Widget {
      *
      * @var      string
      */
-    protected $plugin_version = '1.0.0';
+    protected $plugin_version = '1.0.1';
 
     /**
      * Unique identifier for your widget.
